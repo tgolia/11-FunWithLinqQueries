@@ -31,14 +31,15 @@ namespace LinqExercises.Controllers
             var resultSet = _db.Shippers
                    .Select(s => new
                    {
-                       Shipper = s.CompanyName,
-                       FreightTotals = s.Phone
+                       Shipper = s,
+                       FreightTotals = s.Orders.Sum(o => o.Freight)//.GroupBy(o => o.ShipVia)
                    }
-                    ).OrderBy(s => s.FreightTotals);
+                   ).OrderBy(s => s.FreightTotals);
 
             return Ok(resultSet);
         }
 
+        //.Where(c => c.Orders.Any(o => o.Shipper.CompanyName == shipperName));
         protected override void Dispose(bool disposing)
         {
             _db.Dispose();

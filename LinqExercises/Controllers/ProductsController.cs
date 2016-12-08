@@ -33,7 +33,7 @@ namespace LinqExercises.Controllers
         {
             //throw new NotImplementedException("Write a query to return all products that fall within the given categoryName.");
             var resultSet = _db.Products
-                   .Where(c => c.Category.CategoryName == categoryName);
+                   .Where(p => p.Category.CategoryName == categoryName);
 
             return Ok(resultSet);
         }
@@ -54,7 +54,7 @@ namespace LinqExercises.Controllers
             var resultSet = _db.Products
                                .Select(p => new
                 {
-                    Product = p.ProductName,
+                    Product = p,
                     TotalStockUnits = p.UnitsInStock + p.UnitsOnOrder
                 }
                 ).Where(p => p.TotalStockUnits > 100);

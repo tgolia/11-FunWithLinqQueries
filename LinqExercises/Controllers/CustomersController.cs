@@ -32,9 +32,7 @@ namespace LinqExercises.Controllers
         {
             //throw new NotImplementedException("Write a query to return all customers from Mexico, Sweden and Germany.");
             var resultSet = _db.Customers
-                               .Where(c => c.Country == "Mexico"
-                                        || c.Country == "Sweden"
-                                        || c.Country == "Germany");
+                               .Where(c => c.Country == "Mexico" || c.Country == "Sweden" || c.Country == "Germany");
 
             return Ok(resultSet);
         }

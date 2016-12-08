@@ -19,14 +19,24 @@ namespace LinqExercises.Controllers
         [HttpGet, Route("api/customers/city/{city}"), ResponseType(typeof(IQueryable<Customer>))]
         public IHttpActionResult GetAll(string city)
         {
-            throw new NotImplementedException("Write a query to return all customers in the given city");
+            //throw new NotImplementedException("Write a query to return all customers in the given city");
+            var resultSet = _db.Customers
+                               .Where(c => c.City == city);
+
+            return Ok(resultSet);
         }
 
         // GET: api/customers/mexicoSwedenGermany
         [HttpGet, Route("api/customers/mexicoSwedenGermany"), ResponseType(typeof(IQueryable<Customer>))]
         public IHttpActionResult GetAllFromMexicoSwedenGermany()
         {
-            throw new NotImplementedException("Write a query to return all customers from Mexico, Sweden and Germany.");
+            //throw new NotImplementedException("Write a query to return all customers from Mexico, Sweden and Germany.");
+            var resultSet = _db.Customers
+                               .Where(c => c.Country == "Mexico"
+                                        || c.Country == "Sweden"
+                                        || c.Country == "Germany");
+
+            return Ok(resultSet);
         }
 
         // GET: api/customers/shippedUsing/Speedy Express
@@ -44,7 +54,11 @@ namespace LinqExercises.Controllers
         [HttpGet, Route("api/customers/withoutOrders"), ResponseType(typeof(IQueryable<Customer>))]
         public IHttpActionResult GetCustomersWithoutOrders()
         {
-            throw new NotImplementedException("Write a query to return all customers with no orders in the Orders table.");
+            //throw new NotImplementedException("Write a query to return all customers with no orders in the Orders table.");
+            var resultSet = _db.Customers
+                   .Where(c => !c.Orders.Any(o => o.CustomerID == c.CustomerID));
+
+            return Ok(resultSet);
         }
 
         protected override void Dispose(bool disposing)

@@ -21,8 +21,9 @@ namespace LinqExercises.Controllers
         {
             //throw new NotImplementedException("Write a query to return the number of discontinued products in the Products table.");
             var resultSet = _db.Products
-                               .Where(p => p.Discontinued == true)
-                               .Count();
+                               //.Where(p => p.Discontinued == true)
+                               //.Count();
+                               .Count(p => p.Discontinued);
 
             return Ok(resultSet);
         }
@@ -33,7 +34,7 @@ namespace LinqExercises.Controllers
         {
             //throw new NotImplementedException("Write a query to return all products that fall within the given categoryName.");
             var resultSet = _db.Products
-                   .Where(p => p.Category.CategoryName == categoryName);
+                               .Where(p => p.Category.CategoryName == categoryName);
 
             return Ok(resultSet);
         }

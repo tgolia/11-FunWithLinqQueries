@@ -31,6 +31,11 @@ namespace LinqExercises.Controllers
         public IHttpActionResult GetAllFromMexicoSwedenGermany()
         {
             //throw new NotImplementedException("Write a query to return all customers from Mexico, Sweden and Germany.");
+
+            // var countries = new string[] { "Mexico","Sweden","Germany"};
+
+            // var resultSet = _db.Customers.Where(c => countries.Contains(c.Country));
+
             var resultSet = _db.Customers
                                .Where(c => c.Country == "Mexico" || c.Country == "Sweden" || c.Country == "Germany");
 
@@ -43,7 +48,8 @@ namespace LinqExercises.Controllers
         {
             //throw new NotImplementedException("Write a query to return all customers with orders that shipped using the given shipperName.");
             var resultSet = _db.Customers
-                               .Where(c => c.Orders.Any(o => o.Shipper.CompanyName == shipperName));
+                               .Where(c => c.Orders
+                                            .Any(o => o.Shipper.CompanyName == shipperName));
 
             return Ok(resultSet);
         }
@@ -54,7 +60,8 @@ namespace LinqExercises.Controllers
         {
             //throw new NotImplementedException("Write a query to return all customers with no orders in the Orders table.");
             var resultSet = _db.Customers
-                   .Where(c => !c.Orders.Any(o => o.CustomerID == c.CustomerID));
+                   //.Where(c => !c.Orders.Any(o => o.CustomerID == c.CustomerID));
+                     .Where(c => !c.Orders.Any());
 
             return Ok(resultSet);
         }

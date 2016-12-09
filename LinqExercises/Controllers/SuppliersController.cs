@@ -21,7 +21,8 @@ namespace LinqExercises.Controllers
         {
             //throw new NotImplementedException("Write a query to return all Suppliers that are marketing managers or sales representatives that have a fax number");
             var resultSet = _db.Suppliers
-                   .Where(s => (s.ContactTitle == "Marketing Manager" ||  s.ContactTitle == "Sales Representative") && s.Fax != null);
+                               .Where(s => (s.ContactTitle == "Marketing Manager" ||  s.ContactTitle == "Sales Representative") && s.Fax != null);
+                               //.Where(s => (s.ContactTitle == "Marketing Manager" || s.ContactTitle == "Sales Representative") && s.FaxIsNullOrEmpty());
 
             return Ok(resultSet);
         }

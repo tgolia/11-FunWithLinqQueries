@@ -42,7 +42,7 @@ namespace LinqExercises.Controllers
                 This array should be ordered by QuantityPurchased in descending order.
             ");*/
             var resultSet = _db.Products
-                .Select(p => new // Lambda is most similar to a FUNCTION
+                .Select(p => new // Lambda is most similar to a FUNCTION (for each product p in products)
             {
                 Product = p,
                 QuantityPurchased = p.Order_Details.Sum(od => od.Quantity)

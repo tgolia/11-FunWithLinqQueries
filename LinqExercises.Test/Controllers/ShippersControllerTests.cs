@@ -35,5 +35,18 @@ namespace LinqExercises.Test.Controllers
             Assert.IsNotNull(contentResult.Content);
             Assert.AreEqual(3, list.Count);
         }
+        [TestMethod]
+        public void OrderToShippedReport()
+        {
+            // ACT
+            dynamic contentResult = _shippersController.OrderToShippedReport();
+
+            var list = ((IEnumerable<dynamic>)contentResult.Content).ToList();
+
+            // ASSERT
+            Assert.IsNotNull(contentResult);
+            Assert.IsNotNull(contentResult.Content);
+            Assert.AreEqual(3, list.Count);
+        }
     }
 }
